@@ -1,4 +1,5 @@
-import { Button, Input, Text, VStack } from "@chakra-ui/react";
+import { Button, Input, Text, VStack, useColorMode, IconButton } from "@chakra-ui/react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { useState } from "react";
 
 const Index = () => {
@@ -14,8 +15,10 @@ const Index = () => {
     setPassword(result);
   };
 
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <VStack spacing={4} align="center" justify="center" height="100vh">
+      <IconButton aria-label="Toggle dark mode" icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} size="lg" isRound={true} alignSelf="flex-end" m={4} />
       <Input placeholder="Length of password" value={length} onChange={(e) => setLength(e.target.value)} type="number" />
       <Button colorScheme="blue" onClick={generatePassword}>
         Generate Password
