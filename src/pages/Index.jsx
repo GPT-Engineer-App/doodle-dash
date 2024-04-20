@@ -1,18 +1,27 @@
-// Complete the Index page component here
-// Use chakra-ui
-import { Box, Image, Text, VStack, useColorModeValue, useColorMode } from "@chakra-ui/react";
-import { FaPencilAlt } from "react-icons/fa";
+import { Button, Input, Text, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Index = () => {
-  const { setColor } = useColorMode();
+  const [password, setPassword] = useState("");
+  const [length, setLength] = useState(8);
+
+  const generatePassword = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setPassword(result);
+  };
+
   return (
     <VStack spacing={4} align="center" justify="center" height="100vh">
-      <Box boxSize="sm" bg="white" border="2px" borderColor="gray.200">
-        <canvas id="drawingCanvas" width="500" height="500"></canvas>
-      </Box>
-      <input type="color" id="colorPicker" value="#000000" onChange={(e) => setColor(e.target.value)} />
+      <Input placeholder="Length of password" value={length} onChange={(e) => setLength(e.target.value)} type="number" />
+      <Button colorScheme="blue" onClick={generatePassword}>
+        Generate Password
+      </Button>
       <Text fontSize="2xl" fontWeight="bold">
-        Welcome to the Art Gallery <FaPencilAlt />
+        Your Generated Password: {password}
       </Text>
     </VStack>
   );
