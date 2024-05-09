@@ -18,8 +18,8 @@ const Index = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <VStack spacing={4} align="center" justify="center" height="100vh">
-      <IconButton aria-label="Toggle dark mode" icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} size="lg" isRound={true} alignSelf="flex-end" m={4} />
-      <Input placeholder="Length of password" value={length} onChange={(e) => setLength(e.target.value)} type="number" max="40" />
+      <IconButton aria-label="Toggle dark mode" icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} size="lg" isRound={true} alignSelf="flex-end" m={4} transition="all 0.3s ease" />
+      <Input placeholder="Length of password" value={length} onChange={(e) => setLength(e.target.value)} type="number" />
       <Button colorScheme="blue" onClick={generatePassword}>
         Generate Password
       </Button>
